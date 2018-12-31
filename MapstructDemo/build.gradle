@@ -1,0 +1,57 @@
+buildscript {
+    ext {
+        springBootVersion = '1.5.9.RELEASE'
+    }
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("net.ltgt.gradle:gradle-apt-plugin:0.9")
+    }
+}
+
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: "net.ltgt.apt"
+
+group = 'com.c'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+}
+
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    runtime('mysql:mysql-connector-java')
+    compile('org.projectlombok:lombok:1.16.18')
+    compile("org.springframework.boot:spring-boot-starter-web")
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    /**
+     * mapstruct，mapstruct-lombok支持
+     */
+    compile('org.mapstruct:mapstruct-jdk8:1.2.0.Final')
+    annotationProcessor("org.mapstruct:mapstruct-processor:1.2.0.Final")
+    compile("org.projectlombok:lombok:1.16.18")
+    annotationProcessor("org.projectlombok:lombok:1.16.18")//<<=== Lombok after mapstruct
+}
+
+/**
+ * 配置mapstruct任务
+ */
+tasks.withType(JavaCompile) {
+    options.compilerArgs = [
+            '-Amapstruct.suppressGeneratorTimestamp=true',
+            //默认交由spring管理，在外部可以直接使用@Autowired注入mapper
+            '-Amapstruct.defaultComponentModel=spring',
+            '-Amapstruct.suppressGeneratorVersionInfoComment=true',
+            '-Amapstruct.unmappedTargetPolicy=IGNORE'
+    ]
+}

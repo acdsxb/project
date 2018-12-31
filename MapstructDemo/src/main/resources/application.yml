@@ -1,0 +1,22 @@
+server:
+  port: 8088
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mpt
+    username: root
+    password: 123456
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+
+netbank:
+  cmb:
+    phone: 0571-88915000
+    address: 招商银行杭州分行高新支行
+    account: 5719 0765 1410 201

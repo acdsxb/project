@@ -18,7 +18,7 @@ allprojects {
 
     // 定义仓库
     repositories {
-        maven{ url 'https://maven.aliyun.com/repository/public/' }
+        maven { url 'https://maven.aliyun.com/repository/public/' }
     }
 
     group = 'com.chensubao'
@@ -58,7 +58,7 @@ subprojects {
     targetCompatibility = 1.8
 
     // java编译的时候缺省状态下会因为中文字符而失败
-    [compileJava,compileTestJava,javadoc]*.options*.encoding = 'UTF-8'
+    [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
 
     dependencies {
         implementation libraries['spring-boot-starter']

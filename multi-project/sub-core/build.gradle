@@ -13,5 +13,5 @@ application {
 }
 
 dependencies {
-    compile project (':sub-1')
+    compile project(':sub-1')
 }

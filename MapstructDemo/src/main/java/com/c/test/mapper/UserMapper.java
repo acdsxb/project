@@ -7,8 +7,9 @@ import org.mapstruct.Mapper;
 /**
  * userMapper接口类
  * 继承EntityMapper
+ *
  * @author -c
  */
 @Mapper
-public interface UserMapper extends EntityMapper<UserDTO, User>{
+public interface UserMapper extends EntityMapper<UserDTO, User> {
 }

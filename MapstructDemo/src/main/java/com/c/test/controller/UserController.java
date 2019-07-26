@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * user控制器入口
+ *
  * @author chensubao
  */
 @Slf4j
@@ -35,7 +36,7 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity findAll(@PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable){
+    public ResponseEntity findAll(@PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable) {
         Page<User> page = userService.findAll(pageable);
         return ResponseEntity.ok(page.map(userMapper::toDTO));
     }
